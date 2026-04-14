@@ -9,7 +9,7 @@ import qrcode
 app = Flask(__name__)
 
 def init_db():
-    conn = sqlite3.connect("tmp/urls.db")
+    conn = sqlite3.connect("/tmp/urls.db")
     cursor = conn.cursor()
     cursor.execute("""
                    CREATE TABLE IF NOT EXISTS urls(
