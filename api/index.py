@@ -26,7 +26,7 @@ def generate_code(length=5):
     return ''.join(random.choice(characters) for _ in range(length))
 
 def code_exists(code):
-    conn = sqlite3.connect("urls.db")
+    conn = sqlite3.connect("/tmp/urls.db")
     cursor = conn.cursor()
 
     cursor.execute(
@@ -61,7 +61,7 @@ def shorten_url():
     long_url = request.form["url"]
     
 
-    conn = sqlite3.connect("urls.db")
+    conn = sqlite3.connect("/tmp/urls.db")
     cursor = conn.cursor()
 
     cursor.execute(
@@ -85,7 +85,7 @@ def shorten_url():
 @app.route("/stats")
 def stats():
 
-    conn = sqlite3.connect("urls.db")
+    conn = sqlite3.connect("/tmp/urls.db")
     cursor = conn.cursor()
 
     cursor.execute("SELECT code,long_url, clicks FROM urls")
@@ -95,7 +95,7 @@ def stats():
 
 @app.route("/<code>")
 def redirect_url(code):
-    conn = sqlite3.connect("urls.db")
+    conn = sqlite3.connect("/tmp/urls.db")
     cursor = conn.cursor()
 
     cursor.execute(
