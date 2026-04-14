@@ -79,8 +79,8 @@ def shorten_url():
     short_url = request.host_url + code
 
     img = qrcode.make(short_url)
-    img.save(f"static/{code}.png")
-    return render_template("index.html",short_url=short_url,qr_code=f"/static/{code}.png")
+    img.save(f"/tmp/{code}.png")
+    return render_template("index.html",short_url=short_url,qr_code=f"/tmp/{code}.png")
 
 @app.route("/stats")
 def stats():
